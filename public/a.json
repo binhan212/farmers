@@ -1,0 +1,29 @@
+{
+    "CTDH": [
+        {
+            "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
+            "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
+            "MoTa": "chua co gi",
+            "MaCTDH": "19165ed7-212e-21c4-0428-030d4265475f",
+            "SanPham": {
+                "Anh": "anhsanpham4.jpg",
+                "Gia": 3622436,
+                "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
+                "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
+                "MoTa": "khong",
+                "TenKM": "",
+                "TenSP": " Gạo 1GV",
+                "MaLoai": "24873f8c-4b36-5550-2bdc-88a3ac8a3bba",
+                "MaShop": "499e5f33-3847-3f4b-e14e-3b575a39a32d",
+                "SoLuong": 99056951,
+                "TenLoai": "",
+                "TenShop": ""
+            },
+            "ThoiGian": "2023-05-06 00:00:00.000000"
+        }
+    ],
+    "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
+    "MaTT": "7fa2d825-661c-1243-ea39-fd339774c85d",
+    "MoTa": "không",
+    "TongGia": 8022
+}
