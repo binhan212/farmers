@@ -11,6 +11,7 @@ export const SanPhamReducer = (state = stateDefault,action) => {
             state.sanphams=[...action.data]
             return {...state}
         }
+        
         default : return {...state};
     }
 }

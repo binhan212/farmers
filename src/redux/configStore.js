@@ -6,6 +6,9 @@ import {HistoryReducer} from './reducers/HistoryReducer';
 import {UserLoginAdminReducer} from './reducers/UserReducer';
 import {SanPhamReducer} from './reducers/SanPhamReducer';
 import {DonHangReducer} from './reducers/DonHangReducer';
+import {ShopReducer} from './reducers/ShopReducer';
+import {LoaiSanPhamReducer} from './reducers/LoaiSanPhamReducer';
+import {KhuyenMaiReducer} from './reducers/KhuyenMaiReducer';
 import {ModalReducer} from './reducers/ModalReducer';
 
 //middleware saga
@@ -16,12 +19,14 @@ const middleWareSaga = createMiddleWareSaga();
 const rootReducer = combineReducers({
     //reducer khai báo tại đây
     // LoadingReducer,
-    // ModalReducer
     HistoryReducer,
     UserLoginAdminReducer,
     SanPhamReducer,
     ModalReducer,
-    DonHangReducer
+    DonHangReducer,
+    ShopReducer,
+    LoaiSanPhamReducer,
+    KhuyenMaiReducer
     
 })
 

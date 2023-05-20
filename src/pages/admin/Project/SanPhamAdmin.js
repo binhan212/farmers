@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GET_SANPHAM } from "../../../redux/constants/Admin/adminType";
 import { useSelector } from "react-redux";
 import SanphamForm from "../../../components/Form/SanphamForm";
+import SanphamFormLib from "../../../components/Form/SanphamFormLib";
 
 export default function SanPhamAdmin(props) {
     const dispatch = useDispatch();
@@ -99,8 +100,8 @@ export default function SanPhamAdmin(props) {
 
     return (
         <>
-            <h1 className="h3 mb-3">
-                <strong>Sản Phẩm</strong>
+            <h1 className="h3 mb-3" style={{"cursor":"pointer"}}>
+                <strong onClick={()=>{dispatch({ type: GET_SANPHAM })}}>Sản Phẩm</strong>
             </h1>
 
             <div>
@@ -118,9 +119,10 @@ export default function SanPhamAdmin(props) {
                                     onClick={() => {
                                         dispatch({
                                             type: "MODAL_FORM",
-                                            Component: <SanphamForm />,
+                                            Component: <SanphamFormLib />,
                                             Func: "Thêm",
-                                            Item:''
+                                            ItemArr:[],
+                                            itemObj:{}
                                         });
                                     }}
                                 >
@@ -224,11 +226,10 @@ export default function SanPhamAdmin(props) {
                                                         onClick={() => {
                                                             dispatch({
                                                                 type: "MODAL_FORM",
-                                                                Component: (
-                                                                    <SanphamForm />
-                                                                ),
+                                                                Component: <SanphamFormLib />,
                                                                 Func: "Sửa",
-                                                                Item:item
+                                                                ItemArr:[],
+                                                                itemObj:item
                                                             });
                                                         }}
                                                     >

@@ -34,7 +34,7 @@ export default function Sidebar() {
                         <li className="sidebar-item">
                             <NavLink
                                 className="sidebar-link"
-                                to="/"
+                                to="/shop"
                             >
                                 <i
                                     className="align-middle"
@@ -43,6 +43,33 @@ export default function Sidebar() {
                                 <span className="align-middle">QL Shop</span>
                             </NavLink>
                         </li>
+
+                        <li className="sidebar-item">
+                            <NavLink
+                                className="sidebar-link"
+                                to="/loaisanpham"
+                            >
+                                <i
+                                    className="align-middle"
+                                    data-feather="log-in"
+                                />{" "}
+                                <span className="align-middle">QL Loại SP</span>
+                            </NavLink>
+                        </li>
+
+                        <li className="sidebar-item">
+                            <NavLink
+                                className="sidebar-link"
+                                to="/khuyenmai"
+                            >
+                                <i
+                                    className="align-middle"
+                                    data-feather="log-in"
+                                />{" "}
+                                <span className="align-middle">QL Khuyến Mại</span>
+                            </NavLink>
+                        </li>
+
                         <li className="sidebar-item">
                             <NavLink
                                 className="sidebar-link"
