@@ -1,89 +1,44 @@
-{
-    "CTDH": [
-        {
-            "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
+[
+    {
+        "MaDH": "19f1ae90-6db6-4ec4-a053-513d85e1b6e4",
+        "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
+        "MoTa": "không",
+        "MaCTDH": "27b841c2-0afb-4589-a87b-8e929560dc42",
+        "SanPham": {
+            "Anh": "anhsanpham5.jpg",
+            "Gia": 331325,
+            "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
+            "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
+            "MoTa": "khong",
+            "TenKM": "MAGIAMGIA10",
+            "TenSP": " Khoai tây 9KY",
+            "MaLoai": "2d37fb8c-5355-11d8-deab-8b7af6721bcf",
+            "MaShop": "2a438a5c-7ac6-41bd-66cb-9a771b60f9dd",
+            "SoLuong": 12602542,
+            "TenLoai": "Cây ăn quả",
+            "TenShop": "Quán ăn Chay Sống Xanh"
+        },
+        "ThoiGian": "0001-01-01 00:00:00.000000"
+    },
+    {
+        "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
+        "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
+        "MoTa": "chua co gi",
+        "MaCTDH": "19165ed7-212e-21c4-0428-030d4265475f",
+        "SanPham": {
+            "Anh": "anhsanpham4.jpg",
+            "Gia": 3622436,
+            "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
             "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
-            "MoTa": "chua co gi",
-            "MaCTDH": "19165ed7-212e-21c4-0428-030d4265475f",
-            "SanPham": {
-                "Anh": "anhsanpham4.jpg",
-                "Gia": 3622436,
-                "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
-                "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
-                "MoTa": "khong",
-                "TenKM": "",
-                "TenSP": " Gạo 1GV",
-                "MaLoai": "24873f8c-4b36-5550-2bdc-88a3ac8a3bba",
-                "MaShop": "499e5f33-3847-3f4b-e14e-3b575a39a32d",
-                "SoLuong": 99056951,
-                "TenLoai": "",
-                "TenShop": ""
-            },
-            "ThoiGian": "2023-05-06 00:00:00.000000"
-        }
-    ],
-    "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
-    "MaTT": "7fa2d825-661c-1243-ea39-fd339774c85d",
-    "MoTa": "không",
-    "TongGia": 8022
-}
-
-
-
-
-maCTDH
-: 
-"19165ed7-212e-21c4-0428-030d4265475f"
-maDH
-: 
-"3f8e6896-4c7d-15f5-a018-75d8bd200d7c"
-maSP
-: 
-"6614b51e-1601-1db7-3ceb-2305cc661988"
-moTa
-: 
-"chua co gi"
-sanPham
-: 
-anh
-: 
-"anhsanpham4.jpg"
-gia
-: 
-3622436
-maKM
-: 
-"12b28924-2015-5d35-f1ff-0bf8e460a224"
-maLoai
-: 
-"24873f8c-4b36-5550-2bdc-88a3ac8a3bba"
-maSP
-: 
-"6614b51e-1601-1db7-3ceb-2305cc661988"
-maShop
-: 
-"499e5f33-3847-3f4b-e14e-3b575a39a32d"
-moTa
-: 
-"khong"
-soLuong
-: 
-99056951
-tenKM
-: 
-"MAGIAMGIA10"
-tenLoai
-: 
-"Hành tây"
-tenSP
-: 
-" Gạo 1GV"
-tenShop
-: 
-"Trái ngọt Việt Nam"
-[[Prototype]]
-: 
-Object
-thoiGian
-: 
-"2023-05-06T00:00:00"
+            "MoTa": "khong",
+            "TenKM": "MAGIAMGIA10",
+            "TenSP": " Gạo 1GV",
+            "MaLoai": "24873f8c-4b36-5550-2bdc-88a3ac8a3bba",
+            "MaShop": "499e5f33-3847-3f4b-e14e-3b575a39a32d",
+            "SoLuong": 99056951,
+            "TenLoai": "Hành tây",
+            "TenShop": "Trái ngọt Việt Nam"
+        },
+        "ThoiGian": "2023-05-06 00:00:00.000000"
+    }
+]

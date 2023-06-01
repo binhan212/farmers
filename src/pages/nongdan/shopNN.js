@@ -1,26 +1,28 @@
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { GET_DONHANG } from "../../../redux/constants/Admin/adminType";
 import { useSelector } from "react-redux";
-import DHCT from "../../../components/Form/DHCT";
+import { PHOTO_API } from "../../until/Constants/SettingSystem";
+import FormShopNN from "../../components/FormNN/FormShopNN";
+import SanPhamshop from "../../components/SanPhamshop";
 
-export default function DonHangAdmin(props) {
+export default function ShopNN() {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(9);
-    const sanphams = useSelector((state) => state.DonHangReducer.sanphams);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const sanphams = useSelector((state) => state.ShopReducer.shopnns);
+    const [spshop,setspshop]=useState(false);
 
     const [search, setSearch] = useState({
-        tongGia: 0
+        tenShop: "",
     });
     const [searchedSanPhams, setSearchedSanPhams] = useState([]);
     const [displayedSanPhams, setDisplayedSanPhams] = useState([]);
 
     useEffect(() => {
         const filtered = sanphams.filter((item) => {
-            return (
-                item.tongGia>search.tongGia
-            );
+            return item.tenShop
+                .toLowerCase()
+                .includes(search.tenShop.toLowerCase());
         });
         setSearchedSanPhams(filtered);
         setCurrentPage(1); // Reset trang hiện tại về 1
@@ -83,15 +85,20 @@ export default function DonHangAdmin(props) {
         return pageNumbers;
     };
 
-
     useEffect(() => {
-        dispatch({ type: GET_DONHANG });
+        dispatch({ type: "GET_SHOPNN" });
     }, [dispatch]);
 
     return (
-        <>
-            <h1 className="h3 mb-3">
-                <strong>Đơn Hàng</strong>
+        <div>
+            <h1 className="h3 mb-3" style={{ cursor: "pointer" }}>
+                <strong
+                    onClick={() => {
+                        dispatch({ type: "GET_SHOPNN" });
+                    }}
+                >
+                    ShopNN
+                </strong>
             </h1>
 
             <div>
@@ -100,35 +107,60 @@ export default function DonHangAdmin(props) {
                         <div className="card flex-fill parent-table">
                             <div className="card-header">
                                 <h5 className="card-title mb-0">
-                                    Danh sách đơn hàng
+                                    Danh sách shop
                                 </h5>
+                                <button
+                                    className="btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#modelId"
+                                    onClick={() => {
+                                        dispatch({
+                                            type: "MODAL_FORM",
+                                            Component: <FormShopNN />,
+                                            Func: "Thêm",
+                                            ItemArr: [],
+                                            itemObj: {},
+                                        });
+                                    }}
+                                >
+                                    Thêm
+                                </button>
                             </div>
                             <table className="table table-hover my-0">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
                                         <th className="d-none d-xl-table-cell">
-                                            MaDH
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="tenShop"
+                                                placeholder="Tên shop..."
+                                                value={search.tenShop}
+                                                onChange={handleSearchChange}
+                                            />
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            MaTT
-                                        </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            MoTa
-                                        </th>
-                                        <th>
-                                            Tổng Gía
+
+                                        <th className="d-none d-md-table-cell">
+                                            Ảnh
                                         </th>
                                         <th className="d-none d-md-table-cell">
-                                            Chi Tiết
+                                            Mô Tả
                                         </th>
+                                        <th className="d-none d-md-table-cell">
+                                            Xem/Đóng SP
+                                        </th>
+                                        <th className="d-none d-md-table-cell">
+                                            Sửa
+                                        </th>
+                                        <th className="d-none d-md-table-cell">
+                                            Xóa
+                                        </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {console.log(displayedSanPhams)}
-                                    {
-                                    displayedSanPhams.map((item, index) => {
-                                        console.log(item);
+                                    {displayedSanPhams.map((item, index) => {
                                         const stt =
                                             (currentPage - 1) * itemsPerPage +
                                             index +
@@ -136,22 +168,68 @@ export default function DonHangAdmin(props) {
                                         return (
                                             <tr key={index}>
                                                 <td>{stt}</td>
-                                                <td>{item.maDH}</td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.maTT}
-                                                </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.moTa}
-                                                </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.tongGia.toLocaleString()} VNĐ
+                                                <td>{item.tenShop}</td>
+                                                <td className="d-none d-md-table-cell">
+                                                    <img
+                                                        src={
+                                                            PHOTO_API + item.anh
+                                                        }
+                                                        alt=""
+                                                    />
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
-                                                    <button className="btn btn-info" data-toggle="modal" data-target="#modelId" onClick={
-                                                        ()=>{
-                                                            dispatch({type:"MODAL_FORM",Component:<DHCT />,Func:'Đơn hàng',ItemArr:item.ctdh,ItemObj:{}})
-                                                        }
-                                                    }>Xem</button>
+                                                    {item.moTa}
+                                                </td>
+
+                                                <td className="d-none d-md-table-cell">
+                                                    <button
+                                                        className="btn btn-secondary"
+                                                        onClick={() => {
+                                                            localStorage.setItem('mashop',JSON.stringify(item.maShop));
+                                                            localStorage.setItem('tenshop',JSON.stringify(item.tenShop));
+                                                            dispatch({type:'GET_SPSHOP',ma:item.maShop});
+                                                            setTimeout(function() {
+                                                                setspshop(!spshop);
+                                                               },500);
+                                                            
+                                                        }}
+                                                    >
+                                                        Xem/Đóng SP
+                                                    </button>
+                                                </td>
+
+                                                <td className="d-none d-md-table-cell">
+                                                    <button
+                                                        className="btn btn-info"
+                                                        data-toggle="modal"
+                                                        data-target="#modelId"
+                                                        onClick={() => {
+                                                            dispatch({
+                                                                type: "MODAL_FORM",
+                                                                Component: (
+                                                                    <FormShopNN />
+                                                                ),
+                                                                Func: "Sửa",
+                                                                ItemArr: [],
+                                                                itemObj: item,
+                                                            });
+                                                        }}
+                                                    >
+                                                        Sửa
+                                                    </button>
+                                                </td>
+                                                <td className="d-none d-md-table-cell">
+                                                    <button
+                                                        className="btn btn-danger"
+                                                        onClick={() => {
+                                                            dispatch({
+                                                                type: "XOA_SHOPNN",
+                                                                ma: item.maShop,
+                                                            });
+                                                        }}
+                                                    >
+                                                        Xóa
+                                                    </button>
                                                 </td>
                                             </tr>
                                         );
@@ -210,6 +288,8 @@ export default function DonHangAdmin(props) {
                     </div>
                 </div>
             </div>
-        </>
+
+            {spshop?(<SanPhamshop />):(<></>)}
+        </div>
     );
 }

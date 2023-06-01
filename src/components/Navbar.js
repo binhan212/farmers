@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useSelector } from "react-redux";
 export default function Navbar() {
+
+    var user= useSelector((state)=>state.UserLoginAdminReducer.userLogin);
+
     return (
         <div>
             <nav className="navbar navbar-expand navbar-light navbar-bg">
@@ -31,10 +34,10 @@ export default function Navbar() {
                                     className="avatar img-fluid rounded me-1"
                                     alt="Ảnh"
                                 />{" "}
-                                <span className="text-dark">Bình An</span>
+                                <span className="text-dark">{user.taiKhoanUr}</span>
                             </NavLink>
                             <div className="dropdown-menu dropdown-menu-end">
-                                <NavLink className="dropdown-item" to="/">
+                                <NavLink className="dropdown-item" to="/login">
                                     <i
                                         className="align-middle me-1"
                                         data-feather="user"
@@ -42,7 +45,7 @@ export default function Navbar() {
                                     Profile
                                 </NavLink>
                                 <div className="dropdown-divider" />
-                                <NavLink className="dropdown-item" to="/">
+                                <NavLink className="dropdown-item" to="/login">
                                     Log out
                                 </NavLink>
                             </div>

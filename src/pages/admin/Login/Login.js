@@ -17,7 +17,8 @@ function Login(props) {
   } = props;
 
     return (
-        <div>
+        <div className="html">
+            <div className="body">
             <div className="wrapper1 fadeInDown">
                 <div id="formContent">
                     <h2 className="active" name="adminName">ADMIN</h2>
@@ -59,13 +60,15 @@ function Login(props) {
 
                     </form>
                     <div id="formFooter">
-                        <a className="underlineHover" href="/" placeholder="12">
+                        <div className="underlineHover a" href="/" placeholder="12">
                             Quên Mật Khẩu?
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 }
 

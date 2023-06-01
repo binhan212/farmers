@@ -6,6 +6,7 @@ import {HistoryReducer} from './reducers/HistoryReducer';
 import {UserLoginAdminReducer} from './reducers/UserReducer';
 import {SanPhamReducer} from './reducers/SanPhamReducer';
 import {DonHangReducer} from './reducers/DonHangReducer';
+import {DonHangNNReducer} from './reducers/DonHangNNReducer';
 import {ShopReducer} from './reducers/ShopReducer';
 import {LoaiSanPhamReducer} from './reducers/LoaiSanPhamReducer';
 import {KhuyenMaiReducer} from './reducers/KhuyenMaiReducer';
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
     DonHangReducer,
     ShopReducer,
     LoaiSanPhamReducer,
-    KhuyenMaiReducer
+    KhuyenMaiReducer,
+    DonHangNNReducer
     
 })
 

@@ -14,18 +14,19 @@ import { adminService } from "../../../Services/AdminService";
 import { TOKEN } from "../../../until/Constants/SettingSystem";
 import { USER_LOGIN } from "../../../until/Constants/SettingSystem";
 import { history } from "../../../until/history";
+import {Route, Redirect} from 'react-router-dom';
 
 function* signinSaga(action) {
     try {
         // console.log(action);
-        yield delay(500);
-
-        var { data } = yield call(
+        // yield delay(500);
+        
+        var { data } =yield call(
             adminService.signinAdmin,
             action.taikhoanUr,
             action.matkhauUr
         );
-        console.log(data.token);
+        // console.log(data.token);
         localStorage.setItem(TOKEN, data.token);
         localStorage.setItem(USER_LOGIN, JSON.stringify(data.filteredItems[0]));
 
@@ -34,10 +35,11 @@ function* signinSaga(action) {
             type: USLOGIN,
             userlg: data.filteredItems[0]
         });
-
+        console.log(123);
         //chuyen trang
         let history = yield select((state) => state.HistoryReducer.history);
-        history.push("/");
+        history.replace("/");
+
     } catch (err) {
         console.log(err.response.data);
     }

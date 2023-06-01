@@ -8,17 +8,16 @@ import { PHOTO_API } from "../../until/Constants/SettingSystem";
 
 
 
-function SanphamFormLib(props) {
+function FormSanPhamShopNN(props) {
 
 
   const Func = useSelector((state) => state.ModalReducer.Func);
   const itemObj = useSelector((state) => state.ModalReducer.itemObj);
   // console.log(itemObj);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const mashop=JSON.parse(localStorage.getItem('mashop'));
+    const tenshop=JSON.parse(localStorage.getItem('tenshop'));
 
-  useEffect(()=>{
-    dispatch({type:'GET_SHOP'})
-  },[])
 
   useEffect(()=>{
     dispatch({type:'GET_LOAISANPHAM'})
@@ -30,7 +29,6 @@ function SanphamFormLib(props) {
 
   const loaisanphams = useSelector((state) => state.LoaiSanPhamReducer.loaisanphams);
   const khuyenmais = useSelector((state) => state.KhuyenMaiReducer.khuyenmais);
-  const shops = useSelector((state) => state.ShopReducer.shops);
   const {
     values,
     errors,
@@ -57,10 +55,10 @@ function SanphamFormLib(props) {
     if (itemObj) {
       setValues({
         maSP:itemObj.maSP || 'fdd20772-3d04-444b-8cf4-39473207397d',
-        maShop:itemObj.maShop || '',
+        maShop:itemObj.maShop || mashop,
         maLoai:itemObj.maLoai || '',
         maKM:itemObj.maKM || '',
-        tenShop: itemObj.tenShop || '',
+        tenShop: itemObj.tenShop || tenshop,
         tenSP: itemObj.tenSP || '',
         tenLoai: itemObj.tenLoai || '',
         tenKM: itemObj.tenKM || '',
@@ -70,7 +68,7 @@ function SanphamFormLib(props) {
         moTa: itemObj.moTa || ''
       });
     }
-  }, [itemObj, setValues]);
+  }, [itemObj, setValues,mashop,tenshop]);
 
   values.func = Func;
 
@@ -138,7 +136,6 @@ function SanphamFormLib(props) {
                   name="file"
                   onChange={xulyAnh}
                 />
-                <button className="btn" onClick={xulyApi}>cập nhật</button>
                 <img src={values.anh?(PHOTO_API+values.anh):'./logo192.png'} placeholder="anhsanpham"/>
                 <p>{values.anh}</p>
               </div>
@@ -161,6 +158,7 @@ function SanphamFormLib(props) {
           </div>
 
           <div className="form-row">
+
             <div className="col">
               <div className="form-group">
                 <label htmlFor="soLuong">Số Lượng:</label>
@@ -175,8 +173,6 @@ function SanphamFormLib(props) {
               </div>
             </div>
             
-
-
             <div className="col">
               <div className="form-group">
                 <label htmlFor="listLoai">Loại SP:</label>
@@ -195,19 +191,22 @@ function SanphamFormLib(props) {
           </div>
 
           <div className="form-row">
-            <div className="col">
+          <div className="col">
               <div className="form-group">
-                <label htmlFor="listShop">Shop:</label>
-                <select class="form-select mb-3" id="listShop" name="listShop" defaultValue='' onChange={(event) => {values.maShop=event.target.value}}>
-                <option selected="" >{itemObj?itemObj.tenShop:''}</option>
-                    {shops.map((shop,index)=>{
-                      return (
-                        <option key={index} value={shop.maShop}>{shop.tenShop}</option>
-                      )
-                    })}
-              </select>
+                <label htmlFor="shop">Shop:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="tenShop"
+                  name="tenShop"
+                  onChange={handleChange}
+                  value={values.tenShop}
+                  disabled
+                />
               </div>
-            </div>
+              </div>
+
+
             <div className="col">
               <div className="form-group">
                 <label htmlFor="listKhuyenmai">Khuyến Mại:</label>
@@ -236,7 +235,9 @@ function SanphamFormLib(props) {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => handleSubmit()}
+          onClick={() => {
+            xulyApi();
+            handleSubmit();}}
           data-dismiss="modal"
         >
           Lưu/Xuất
@@ -271,10 +272,10 @@ const mapFormikToProps=withFormik({
   
       handleSubmit: (values, { props, setSubmitting }) => {
         console.log(props);
-        props.dispatch({ type: 'SAVE_SANPHAM', values: values });
+        props.dispatch({ type: 'SAVE_SANPHAM', values: values ,addSub:'add'});
         props.dispatch({type:"CLOSE_MODAL"});
       },
     displayName: 'ADMIN',
-  })(SanphamFormLib);
+  })(FormSanPhamShopNN);
   
   export default connect()(mapFormikToProps);

@@ -1,45 +1,28 @@
-import React from "react";
+import React,{useRef} from "react";
 import { useSelector } from "react-redux";
 import { saveAs } from "file-saver";
 import Packer from "docxtemplater";
-import { renderToStaticMarkup } from "react-dom/server";
-
+import {useReactToPrint} from 'react-to-print';
 
 export default function DHCT() {
+
+      //in ra pdf
+    const componentRef=useRef();
+    const handlePrint = useReactToPrint({
+        content:()=>componentRef.current,
+        documentTitle:'emp-data',
+        // onAfterPrint:()=> alert('In thành công!')
+    });
+
+
     const CTDHs = useSelector((state) => state.ModalReducer.itemArr);
     const Func = useSelector((state) => state.ModalReducer.Func);
 
-    const exportToWord = async () => {
-        const templateURL = "/DH2.docx";
-    
-        try {
-            const response = await fetch(templateURL);
-            const template = await response.blob();
-            
-            const doc = new Packer().loadZip(template);
-            console.log(doc);
-            const data = {
-                CTDHs: CTDHs,
-            };
-    
-            doc.setData(data);
-            doc.render();
-    
-            const output = doc.getZip().generate({ type: "blob" });
-    
-            saveAs(output, "exported.docx");
-        } catch (error) {
-            console.error("Error while downloading the template:", error);
-        }
-    };
-    
-    
-      
 
 
     return (
-        <div className="modal-content">
-            <div className="modal-header">
+        <div className="modal-content" ref={componentRef} style={{'width':'100%','height':'100%'}}>
+            <div className="modal-header" >
                 <h5 className="modal-title">{Func}</h5>
                 <button
                     type="button"
@@ -88,10 +71,10 @@ export default function DHCT() {
                                         {CTDH.sanPham.tenKM}
                                     </td>
                                     <td className="d-none d-xl-table-cell">
-                                        {CTDH.sanPham.soLuong}
+                                        {CTDH.sanPham.soLuong.toLocaleString()}
                                     </td>
                                     <td className="d-none d-xl-table-cell">
-                                        {CTDH.sanPham.gia}
+                                        {CTDH.sanPham.gia.toLocaleString()} VNĐ
                                     </td>
                                     <td className="d-none d-xl-table-cell">
                                         {CTDH.sanPham.thoiGian}
@@ -110,7 +93,7 @@ export default function DHCT() {
                 >
                     Đóng
                 </button>
-                <button type="button" class="btn btn-primary" onClick={exportToWord}>
+                <button type="button" class="btn btn-primary" onClick={handlePrint}>
                     Lưu/Xuất
                 </button>
             </div>

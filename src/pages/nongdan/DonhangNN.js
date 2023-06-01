@@ -1,25 +1,27 @@
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { GET_DONHANG } from "../../../redux/constants/Admin/adminType";
 import { useSelector } from "react-redux";
-import DHCT from "../../../components/Form/DHCT";
+import { PHOTO_API } from "../../until/Constants/SettingSystem";
+export default function DonhangNN() {
 
-export default function DonHangAdmin(props) {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(9);
-    const sanphams = useSelector((state) => state.DonHangReducer.sanphams);
+    const sanphams = useSelector((state) => state.DonHangNNReducer.sanphams);
 
-    const [search, setSearch] = useState({
-        tongGia: 0
-    });
+
     const [searchedSanPhams, setSearchedSanPhams] = useState([]);
     const [displayedSanPhams, setDisplayedSanPhams] = useState([]);
+
+
+    const [search, setSearch] = useState({
+        tongGia: 1
+    });
 
     useEffect(() => {
         const filtered = sanphams.filter((item) => {
             return (
-                item.tongGia>search.tongGia
+                search.tongGia>0
             );
         });
         setSearchedSanPhams(filtered);
@@ -85,11 +87,13 @@ export default function DonHangAdmin(props) {
 
 
     useEffect(() => {
-        dispatch({ type: GET_DONHANG });
+        dispatch({ type: "GET_DONHANGNN" });
     }, [dispatch]);
 
-    return (
-        <>
+
+    console.log(sanphams);
+  return (
+    <>
             <h1 className="h3 mb-3">
                 <strong>Đơn Hàng</strong>
             </h1>
@@ -111,21 +115,18 @@ export default function DonHangAdmin(props) {
                                             MaDH
                                         </th>
                                         <th className="d-none d-xl-table-cell">
-                                            MaTT
+                                            Tên SP
                                         </th>
                                         <th className="d-none d-xl-table-cell">
-                                            MoTa
+                                            Ảnh
                                         </th>
                                         <th>
-                                            Tổng Gía
-                                        </th>
-                                        <th className="d-none d-md-table-cell">
-                                            Chi Tiết
+                                            Giá
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {console.log(displayedSanPhams)}
+                                    {/* {console.log(displayedSanPhams)} */}
                                     {
                                     displayedSanPhams.map((item, index) => {
                                         console.log(item);
@@ -136,22 +137,15 @@ export default function DonHangAdmin(props) {
                                         return (
                                             <tr key={index}>
                                                 <td>{stt}</td>
-                                                <td>{item.maDH}</td>
+                                                <td>{item.maCTDH}</td>
                                                 <td className="d-none d-xl-table-cell">
-                                                    {item.maTT}
+                                                    {item.sanPham.tenSP}
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
-                                                    {item.moTa}
+                                                    <img src={PHOTO_API+item.sanPham.anh} alt="" />
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
-                                                    {item.tongGia.toLocaleString()} VNĐ
-                                                </td>
-                                                <td className="d-none d-md-table-cell">
-                                                    <button className="btn btn-info" data-toggle="modal" data-target="#modelId" onClick={
-                                                        ()=>{
-                                                            dispatch({type:"MODAL_FORM",Component:<DHCT />,Func:'Đơn hàng',ItemArr:item.ctdh,ItemObj:{}})
-                                                        }
-                                                    }>Xem</button>
+                                                    {item.sanPham.gia.toLocaleString()} VNĐ
                                                 </td>
                                             </tr>
                                         );
@@ -211,5 +205,5 @@ export default function DonHangAdmin(props) {
                 </div>
             </div>
         </>
-    );
+  )
 }

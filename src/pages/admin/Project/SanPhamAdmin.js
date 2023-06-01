@@ -4,11 +4,12 @@ import { GET_SANPHAM } from "../../../redux/constants/Admin/adminType";
 import { useSelector } from "react-redux";
 import SanphamForm from "../../../components/Form/SanphamForm";
 import SanphamFormLib from "../../../components/Form/SanphamFormLib";
+import { PHOTO_API } from "../../../until/Constants/SettingSystem";
 
 export default function SanPhamAdmin(props) {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
     const sanphams = useSelector((state) => state.SanPhamReducer.sanphams);
 
     const [search, setSearch] = useState({
@@ -210,13 +211,13 @@ export default function SanPhamAdmin(props) {
                                                     {item.tenKM}
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
-                                                    {item.anh}
+                                                   <img src={item.anh?(PHOTO_API+item.anh):'./logo192.png'} placeholder="anhsanpham"/>
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
-                                                    {item.gia}
+                                                    {item.gia.toLocaleString()} VNĐ
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
-                                                    {item.soLuong}
+                                                    {item.soLuong.toLocaleString()}
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
                                                     <button
@@ -237,7 +238,11 @@ export default function SanPhamAdmin(props) {
                                                     </button>
                                                 </td>
                                                 <td className="d-none d-md-table-cell">
-                                                    <button className="btn btn-danger">
+                                                    <button className="btn btn-danger"
+                                                    onClick={()=>{
+                                                        dispatch({type:"XOA_SANPHAM",masp:item.maSP})
+                                                    }}
+                                                    >
                                                         Xóa
                                                     </button>
                                                 </td>
@@ -301,3 +306,5 @@ export default function SanPhamAdmin(props) {
         </>
     );
 }
+
+

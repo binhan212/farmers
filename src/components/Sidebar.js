@@ -1,9 +1,26 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 
 export default function Sidebar() {
+    var user= useSelector((state)=>state.UserLoginAdminReducer.userLogin);
+    console.log(user.role);
+    var [roleUr,stateRole]=useState(true);
+    
+    useEffect(()=>{
+        if(user.role==='admin'){
+            stateRole(true);
+        }
+        else{
+            stateRole(false);
+        }
+    },[user])
+
     return (
-            <nav id="sidebar" className="sidebar js-sidebar">
+        <>
+            {roleUr?(
+            <nav id="sidebar" className="sidebar js-sidebar" 
+            >
                 <div className="sidebar-content js-simplebar">
                     <NavLink className="sidebar-brand" to="/">
                         <span className="align-middle">FARMERS</span>
@@ -133,5 +150,55 @@ export default function Sidebar() {
                     </ul>
                 </div>
             </nav>
+            ):(
+                <nav id="sidebar" className="sidebar js-sidebar" 
+                >
+                    <div className="sidebar-content js-simplebar">
+                        <NavLink className="sidebar-brand" to="/">
+                            <span className="align-middle">FARMERS</span>
+                        </NavLink>
+                        <ul className="sidebar-nav">
+                            <li className="sidebar-header">Nông Dân</li>
+                            <li className="sidebar-item active">
+                                <NavLink className="sidebar-link" to="/">
+                                    <i
+                                        className="align-middle"
+                                        data-feather="sliders"
+                                    />{" "}
+                                    <span className="align-middle">Thống Kê</span>
+                                </NavLink>
+                            </li>
+                            <li className="sidebar-item">
+                                <NavLink
+                                    className="sidebar-link"
+                                    to="/shopnn"
+                                >
+                                    <i
+                                        className="align-middle"
+                                        data-feather="user"
+                                    />{" "}
+                                    <span className="align-middle">QL Shop NN</span>
+                                </NavLink>
+                            </li>
+                            <li className="sidebar-item">
+                                <NavLink
+                                    className="sidebar-link"
+                                    to="/donhangnn"
+                                >
+                                    <i
+                                        className="align-middle"
+                                        data-feather="log-in"
+                                    />{" "}
+                                    <span className="align-middle">QL Đơn Hàng NN</span>
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            
+            )}
+        </>
+        
+            
     );
 }
