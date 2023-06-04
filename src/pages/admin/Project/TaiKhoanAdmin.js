@@ -1,28 +1,28 @@
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { PHOTO_API } from "../../until/Constants/SettingSystem";
-import FormDHCTNN from "../../components/FormNN/FormCTDHNN";
-export default function DonhangNN() {
+import NguoiDungFormAdd from "../../../components/Form/NguoiDungFormAdd";
+import TaiKhoanForm from "../../../components/Form/TaiKhoanForm";
 
+export default function TaiKhoanAdmin() {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(9);
-    const sanphams = useSelector((state) => state.DonHangNNReducer.sanphams);
-
-
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const sanphams = useSelector((state) => state.TaiKhoanReducer.taikhoans);
+    console.log(sanphams);
+    const [search, setSearch] = useState({
+        taiKhoanUr: ""
+    });
     const [searchedSanPhams, setSearchedSanPhams] = useState([]);
     const [displayedSanPhams, setDisplayedSanPhams] = useState([]);
-
-
-    const [search, setSearch] = useState({
-        tongGia: 1
-    });
 
     useEffect(() => {
         const filtered = sanphams.filter((item) => {
             return (
-                search.tongGia>0
+                
+                item.taiKhoanUr
+                    .toLowerCase()
+                    .includes(search.taiKhoanUr.toLowerCase())
             );
         });
         setSearchedSanPhams(filtered);
@@ -86,17 +86,15 @@ export default function DonhangNN() {
         return pageNumbers;
     };
 
-
     useEffect(() => {
-        dispatch({ type: "GET_DONHANGNN" });
+        dispatch({ type: 'GET_TAIKHOAN' });
     }, [dispatch]);
 
 
-    console.log(sanphams);
   return (
-    <>
-            <h1 className="h3 mb-3">
-                <strong>Đơn Hàng</strong>
+    <div>
+      <h1 className="h3 mb-3" style={{"cursor":"pointer"}}>
+                <strong onClick={()=>{dispatch({ type: 'GET_SHOP' })}}>Tài Khoản</strong>
             </h1>
 
             <div>
@@ -105,7 +103,7 @@ export default function DonhangNN() {
                         <div className="card flex-fill parent-table">
                             <div className="card-header">
                                 <h5 className="card-title mb-0">
-                                    Danh sách đơn hàng
+                                    Danh sách tài khoản
                                 </h5>
                             </div>
                             <table className="table table-hover my-0">
@@ -113,27 +111,32 @@ export default function DonhangNN() {
                                     <tr>
                                         <th>STT</th>
                                         <th className="d-none d-xl-table-cell">
-                                            MaDH
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="taiKhoanUr"
+                                                placeholder="tài khoản..."
+                                                value={search.taiKhoanUr}
+                                                onChange={handleSearchChange}
+                                            />
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            Tên SP
+                                      
+                                        <th className="d-none d-md-table-cell">
+                                            Mật Khẩu
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            Ảnh
+                                        <th className="d-none d-md-table-cell">
+                                           Quyền
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            Số Lượng Đặt Mua
+                                        {/* <th className="d-none d-md-table-cell">
+                                            Sửa
                                         </th>
-                                        <th>
-                                           Chi Tiết
-                                        </th>
+                                        <th className="d-none d-md-table-cell">
+                                            Xóa
+                                        </th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* {console.log(displayedSanPhams)} */}
-                                    {
-                                    displayedSanPhams.map((item, index) => {
-                                        console.log(item);
+                                    {displayedSanPhams.map((item, index) => {
                                         const stt =
                                             (currentPage - 1) * itemsPerPage +
                                             index +
@@ -141,31 +144,36 @@ export default function DonhangNN() {
                                         return (
                                             <tr key={index}>
                                                 <td>{stt}</td>
-                                                <td>{item.maCTDH}</td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.sanPham.tenSP}
+                                                <td>{item.taiKhoanUr}</td>
+                                                <td className="d-none d-md-table-cell">
+                                                    {item.matKhauUr}
                                                 </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    <img src={PHOTO_API+item.sanPham.anh} alt="" />
+                                                <td className="d-none d-md-table-cell">
+                                                    {item.role}
                                                 </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.soLuong}
-                                                </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    <button className="btn btn-primary"
-                                                    data-toggle="modal" data-target="#modelId"
-                                                    onClick={() => {
-                                                        console.log(123);
-                                                        dispatch({
-                                                            type: "MODAL_FORM",
-                                                            Component: <FormDHCTNN />,
-                                                            Func:'Đơn hàng',
-                                                            ItemArr: [],
-                                                            itemObj: {...item},
-                                                        });
-                                                    }}
-                                                    >Xem</button>
-                                                </td>
+                                                {/* <td className="d-none d-md-table-cell">
+                                                    <button
+                                                        className="btn btn-info"
+                                                        data-toggle="modal"
+                                                        data-target="#modelId"
+                                                        onClick={() => {
+                                                            dispatch({
+                                                                type: "MODAL_FORM",
+                                                                Component: <TaiKhoanForm />,
+                                                                Func: "Sửa",
+                                                                ItemArr:[],
+                                                                itemObj:item
+                                                            });
+                                                        }}
+                                                    >
+                                                        Sửa
+                                                    </button>
+                                                </td> */}
+                                                {/* <td className="d-none d-md-table-cell">
+                                                    <button className="btn btn-danger">
+                                                        Xóa
+                                                    </button>
+                                                </td> */}
                                             </tr>
                                         );
                                     })}
@@ -223,6 +231,6 @@ export default function DonhangNN() {
                     </div>
                 </div>
             </div>
-        </>
+    </div>
   )
 }

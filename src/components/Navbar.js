@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 export default function Navbar() {
-
+    const dispatch=new useDispatch();
     var user= useSelector((state)=>state.UserLoginAdminReducer.userLogin);
 
     return (
@@ -45,7 +45,7 @@ export default function Navbar() {
                                     Profile
                                 </NavLink>
                                 <div className="dropdown-divider" />
-                                <NavLink className="dropdown-item" to="/login">
+                                <NavLink className="dropdown-item" to="/login" onClick={()=>{localStorage.clear();dispatch({type:"CLEAR_DATA"})}}>
                                     Log out
                                 </NavLink>
                             </div>

@@ -173,4 +173,81 @@ export const adminService={
         })
     },
 
+    laynguoidung:()=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/Nguoidung/TimKiem?offset=0&limit=-1`,
+            method:'POST',
+            data:{},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    laynguoidungtheoma:(ma)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/Nguoidung/TimKiem?offset=0&limit=-1`,
+            method:'POST',
+            data:{maND:ma},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    themnguoidung:(res)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/Nguoidung`,
+            method:'POST',
+            data:res,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    laytaikhoan:()=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/TaiKhoan/TimKiem?offset=0&limit=-1`,
+            method:'POST',
+            data:{},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    themtaikhoan:(res)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/TaiKhoan`,
+            method:'POST',
+            data:res,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    suataikhoan:(res)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/TaiKhoan`,
+            method:'PUT',
+            data:res,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    laynongdan:()=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/Nongdan/TimKiem?offset=0&limit=-1`,
+            method:'POST',
+            data:{},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
 }

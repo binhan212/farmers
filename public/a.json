@@ -1,44 +1,110 @@
 [
     {
-        "MaDH": "19f1ae90-6db6-4ec4-a053-513d85e1b6e4",
-        "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
-        "MoTa": "không",
-        "MaCTDH": "27b841c2-0afb-4589-a87b-8e929560dc42",
-        "SanPham": {
-            "Anh": "anhsanpham5.jpg",
-            "Gia": 331325,
-            "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
-            "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
-            "MoTa": "khong",
-            "TenKM": "MAGIAMGIA10",
-            "TenSP": " Khoai tây 9KY",
-            "MaLoai": "2d37fb8c-5355-11d8-deab-8b7af6721bcf",
-            "MaShop": "2a438a5c-7ac6-41bd-66cb-9a771b60f9dd",
-            "SoLuong": 12602542,
-            "TenLoai": "Cây ăn quả",
-            "TenShop": "Quán ăn Chay Sống Xanh"
-        },
-        "ThoiGian": "0001-01-01 00:00:00.000000"
+        "CTDH": [
+            {
+                "MaDH": "1a8fe1f9-662e-44ac-a105-8ab7e6355be9",
+                "MaND": "4b24c549-7e20-66b7-b073-961b5d5b8db8",
+                "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
+                "MoTa": "không",
+                "MaCTDH": "4458ec4f-23ce-4103-9186-f1ac7968fbd7",
+                "SanPham": {
+                    "Anh": "anhsanpham5.jpg",
+                    "Gia": 331325,
+                    "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
+                    "MaSP": "1156798a-265f-3ecb-ccb4-6865aee0822f",
+                    "MoTa": "khong",
+                    "TenKM": "MAGIAMGIA10",
+                    "TenSP": " Khoai tây 9KY",
+                    "MaLoai": "2d37fb8c-5355-11d8-deab-8b7af6721bcf",
+                    "MaShop": "2a438a5c-7ac6-41bd-66cb-9a771b60f9dd",
+                    "SoLuong": 12602542,
+                    "TenLoai": "Cây ăn quả",
+                    "TenShop": "Quán ăn Chay Sống Xanh"
+                },
+                "SoLuong": 2,
+                "ThoiGian": "0001-01-01 00:00:00.000000"
+            },
+            {
+                "MaDH": "1a8fe1f9-662e-44ac-a105-8ab7e6355be9",
+                "MaND": "4b24c549-7e20-66b7-b073-961b5d5b8db8",
+                "MaSP": "111a6929-38c0-6773-deb4-6865aee0822f",
+                "MoTa": "không",
+                "MaCTDH": "9799d469-d475-4532-ab13-f631d7087e20",
+                "SanPham": {
+                    "Anh": "anhsanpham9.jpg",
+                    "Gia": 5817597,
+                    "MaKM": "2d46bab3-4f6b-69a8-71b0-22cff29e2663",
+                    "MaSP": "111a6929-38c0-6773-deb4-6865aee0822f",
+                    "MoTa": "khong",
+                    "TenKM": "MAGIAMGIA50",
+                    "TenSP": " Ớt 5RA",
+                    "MaLoai": "1fed4996-31a9-74ba-d5a7-99e7765afd72",
+                    "MaShop": "57cb4550-6c6b-413c-d5c3-9fde8866bc46",
+                    "SoLuong": 97542053,
+                    "TenLoai": "Hoa quả",
+                    "TenShop": "Tư vấn trang trạiSmartFarm"
+                },
+                "SoLuong": 1,
+                "ThoiGian": "0001-01-01 00:00:00.000000"
+            }
+        ],
+        "MaDH": "1a8fe1f9-662e-44ac-a105-8ab7e6355be9",
+        "MaTT": "2dbbb2f6-6169-6028-e939-fd339774c85d",
+        "MoTa": "không 1.",
+        "TongGia": 6480247
     },
     {
-        "MaDH": "3f8e6896-4c7d-15f5-a018-75d8bd200d7c",
-        "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
-        "MoTa": "chua co gi",
-        "MaCTDH": "19165ed7-212e-21c4-0428-030d4265475f",
-        "SanPham": {
-            "Anh": "anhsanpham4.jpg",
-            "Gia": 3622436,
-            "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
-            "MaSP": "6614b51e-1601-1db7-3ceb-2305cc661988",
-            "MoTa": "khong",
-            "TenKM": "MAGIAMGIA10",
-            "TenSP": " Gạo 1GV",
-            "MaLoai": "24873f8c-4b36-5550-2bdc-88a3ac8a3bba",
-            "MaShop": "499e5f33-3847-3f4b-e14e-3b575a39a32d",
-            "SoLuong": 99056951,
-            "TenLoai": "Hành tây",
-            "TenShop": "Trái ngọt Việt Nam"
-        },
-        "ThoiGian": "2023-05-06 00:00:00.000000"
+        "CTDH": [
+            {
+                "MaDH": "436bac26-d599-4b24-b21a-b33201a4dad7",
+                "MaND": "4b24c549-7e20-66b7-b073-961b5d5b8db8",
+                "MaSP": "11b4b7eb-2007-50c2-32b8-7265ab5e4dd2",
+                "MoTa": "không",
+                "MaCTDH": "3a0cec93-f3e7-4322-a092-efbb10cb2dee",
+                "SanPham": {
+                    "Anh": "anhsanpham3.jpg",
+                    "Gia": 5517638,
+                    "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
+                    "MaSP": "11b4b7eb-2007-50c2-32b8-7265ab5e4dd2",
+                    "MoTa": "khong",
+                    "TenKM": "MAGIAMGIA10",
+                    "TenSP": " Sữa bò 6KQ",
+                    "MaLoai": "592b006d-6335-6101-edf6-092cdb0ab5e8",
+                    "MaShop": "57cb4550-6c6b-413c-d5c3-9fde8866bc46",
+                    "SoLuong": 48297582,
+                    "TenLoai": "Rau cải",
+                    "TenShop": "Tư vấn trang trạiSmartFarm"
+                },
+                "SoLuong": 1,
+                "ThoiGian": "0001-01-01 00:00:00.000000"
+            },
+            {
+                "MaDH": "436bac26-d599-4b24-b21a-b33201a4dad7",
+                "MaND": "4b24c549-7e20-66b7-b073-961b5d5b8db8",
+                "MaSP": "11b70259-6943-6e92-9eb4-6865aee0822f",
+                "MoTa": "không",
+                "MaCTDH": "7bee8e04-f1a8-4f02-84a3-e89ac45866d8",
+                "SanPham": {
+                    "Anh": "anhsanpham3.jpg",
+                    "Gia": 2740154,
+                    "MaKM": "12b28924-2015-5d35-f1ff-0bf8e460a224",
+                    "MaSP": "11b70259-6943-6e92-9eb4-6865aee0822f",
+                    "MoTa": "khong",
+                    "TenKM": "MAGIAMGIA10",
+                    "TenSP": " Thịt bò 5CO",
+                    "MaLoai": "1817a31a-5cfc-5c37-f7f6-092cdb0ab5e8",
+                    "MaShop": "65c90dff-3180-5f83-c803-bda575a10914",
+                    "SoLuong": 82012906,
+                    "TenLoai": "Đậu tương",
+                    "TenShop": "Nông trại Hải Âu"
+                },
+                "SoLuong": 2,
+                "ThoiGian": "0001-01-01 00:00:00.000000"
+            }
+        ],
+        "MaDH": "436bac26-d599-4b24-b21a-b33201a4dad7",
+        "MaTT": "2dbbb2f6-6169-6028-e939-fd339774c85d",
+        "MoTa": "không 1.",
+        "TongGia": 10997946
     }
 ]

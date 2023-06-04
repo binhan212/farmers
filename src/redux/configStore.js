@@ -10,6 +10,9 @@ import {DonHangNNReducer} from './reducers/DonHangNNReducer';
 import {ShopReducer} from './reducers/ShopReducer';
 import {LoaiSanPhamReducer} from './reducers/LoaiSanPhamReducer';
 import {KhuyenMaiReducer} from './reducers/KhuyenMaiReducer';
+import {NguoiDungReducer} from './reducers/NguoiDungReducer';
+import {TaiKhoanReducer} from './reducers/TaiKhoanReducer';
+import {NongDanReducer} from './reducers/NongDanReducer';
 import {ModalReducer} from './reducers/ModalReducer';
 
 //middleware saga
@@ -28,7 +31,10 @@ const rootReducer = combineReducers({
     ShopReducer,
     LoaiSanPhamReducer,
     KhuyenMaiReducer,
-    DonHangNNReducer
+    DonHangNNReducer,
+    NguoiDungReducer,
+    TaiKhoanReducer,
+    NongDanReducer
     
 })
 

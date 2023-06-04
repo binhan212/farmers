@@ -48,3 +48,19 @@ function* signinSaga(action) {
 export function* theodoiSignin() {
     yield takeLatest(USER_SIGNIN_API, signinSaga);
 }
+//---------------------------------------------------------------------------
+function* clearData(action) {
+    try {
+        yield put({
+            type: "CLEAR_SHOP"
+        });
+        yield put({
+            type: "CLEAR_DONHANG"
+        });
+    } catch (err) {
+    }
+}
+
+export function* clearDataSaga() {
+    yield takeLatest(USER_SIGNIN_API, clearData);
+}

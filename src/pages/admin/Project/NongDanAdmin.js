@@ -1,28 +1,28 @@
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { PHOTO_API } from "../../until/Constants/SettingSystem";
-import FormDHCTNN from "../../components/FormNN/FormCTDHNN";
-export default function DonhangNN() {
+import NguoiDungFormAdd from "../../../components/Form/NguoiDungFormAdd";
+import TaiKhoanForm from "../../../components/Form/TaiKhoanForm";
 
+export default function NongDanAdmin() {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(9);
-    const sanphams = useSelector((state) => state.DonHangNNReducer.sanphams);
-
-
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const sanphams = useSelector((state) => state.NongDanReducer.nongdans);
+    console.log(sanphams);
+    const [search, setSearch] = useState({
+        cccd: ""
+    });
     const [searchedSanPhams, setSearchedSanPhams] = useState([]);
     const [displayedSanPhams, setDisplayedSanPhams] = useState([]);
-
-
-    const [search, setSearch] = useState({
-        tongGia: 1
-    });
 
     useEffect(() => {
         const filtered = sanphams.filter((item) => {
             return (
-                search.tongGia>0
+                
+                item.cccd
+                    .toLowerCase()
+                    .includes(search.cccd.toLowerCase())
             );
         });
         setSearchedSanPhams(filtered);
@@ -86,17 +86,15 @@ export default function DonhangNN() {
         return pageNumbers;
     };
 
-
     useEffect(() => {
-        dispatch({ type: "GET_DONHANGNN" });
+        dispatch({ type: 'GET_NONGDAN' });
     }, [dispatch]);
 
 
-    console.log(sanphams);
   return (
-    <>
-            <h1 className="h3 mb-3">
-                <strong>Đơn Hàng</strong>
+    <div>
+      <h1 className="h3 mb-3" style={{"cursor":"pointer"}}>
+                <strong onClick={()=>{dispatch({ type: 'GET_NONGDAN' })}}>Nông Dân</strong>
             </h1>
 
             <div>
@@ -105,35 +103,37 @@ export default function DonhangNN() {
                         <div className="card flex-fill parent-table">
                             <div className="card-header">
                                 <h5 className="card-title mb-0">
-                                    Danh sách đơn hàng
+                                    Danh sách nông dân
                                 </h5>
                             </div>
                             <table className="table table-hover my-0">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th className="d-none d-xl-table-cell">
-                                            MaDH
+                                        <th className="d-none d-md-table-cell">
+                                            Mã Nông Dân
                                         </th>
                                         <th className="d-none d-xl-table-cell">
-                                            Tên SP
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                name="cccd"
+                                                placeholder="cccd..."
+                                                value={search.cccd}
+                                                onChange={handleSearchChange}
+                                            />
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            Ảnh
+                                      
+                                        <th className="d-none d-md-table-cell">
+                                            TKNH
                                         </th>
-                                        <th className="d-none d-xl-table-cell">
-                                            Số Lượng Đặt Mua
-                                        </th>
-                                        <th>
-                                           Chi Tiết
-                                        </th>
+                                        {/* <th className="d-none d-md-table-cell">
+                                           Quyền
+                                        </th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* {console.log(displayedSanPhams)} */}
-                                    {
-                                    displayedSanPhams.map((item, index) => {
-                                        console.log(item);
+                                    {displayedSanPhams.map((item, index) => {
                                         const stt =
                                             (currentPage - 1) * itemsPerPage +
                                             index +
@@ -141,30 +141,12 @@ export default function DonhangNN() {
                                         return (
                                             <tr key={index}>
                                                 <td>{stt}</td>
-                                                <td>{item.maCTDH}</td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.sanPham.tenSP}
+                                                <td className="d-none d-md-table-cell">
+                                                    {item.maNN}
                                                 </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    <img src={PHOTO_API+item.sanPham.anh} alt="" />
-                                                </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    {item.soLuong}
-                                                </td>
-                                                <td className="d-none d-xl-table-cell">
-                                                    <button className="btn btn-primary"
-                                                    data-toggle="modal" data-target="#modelId"
-                                                    onClick={() => {
-                                                        console.log(123);
-                                                        dispatch({
-                                                            type: "MODAL_FORM",
-                                                            Component: <FormDHCTNN />,
-                                                            Func:'Đơn hàng',
-                                                            ItemArr: [],
-                                                            itemObj: {...item},
-                                                        });
-                                                    }}
-                                                    >Xem</button>
+                                                <td>{item.cccd}</td>
+                                                <td className="d-none d-md-table-cell">
+                                                    {item.tknh}
                                                 </td>
                                             </tr>
                                         );
@@ -223,6 +205,6 @@ export default function DonhangNN() {
                     </div>
                 </div>
             </div>
-        </>
+    </div>
   )
 }

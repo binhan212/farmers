@@ -235,8 +235,8 @@ function SanphamFormLib(props) {
         </button>
         <button
           type="button"
-          className="btn btn-primary"
           onClick={() => handleSubmit()}
+          className="btn btn-primary"
           data-dismiss="modal"
         >
           Lưu/Xuất

@@ -14,6 +14,10 @@ export const ShopReducer = (state = stateDefault,action) => {
             state.shopnns=[...action.data]
             return {...state}
         }
+        case "CLEAR_SHOP":{
+            state.shopnns=[]
+            return {...state}
+        }
         default : return {...state};
     }
 }

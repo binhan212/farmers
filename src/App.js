@@ -21,6 +21,10 @@ import KhuyenMaiAdmin from "./pages/admin/Project/KhuyenMaiAdmin";
 import { bool, boolean } from "yup";
 import ShopNN from "./pages/nongdan/shopNN";
 import DonhangNN from "./pages/nongdan/DonhangNN";
+import NguoiDungAdmin from "./pages/admin/Project/NguoiDungAdmin";
+import TaiKhoanAdmin from "./pages/admin/Project/TaiKhoanAdmin";
+import Thongkenn from "./pages/nongdan/Thongkenn";
+import NongDanAdmin from "./pages/admin/Project/NongDanAdmin";
 
 function App() {
     const history = useHistory();
@@ -48,10 +52,14 @@ function App() {
                 <HomeTemplate exact path="/shop" Component={ShopAdmin} isAuthenticated={isAuthenticated} />
                 <HomeTemplate exact path="/loaisanpham" Component={LoaiSanPhamAdmin} isAuthenticated={isAuthenticated} />
                 <HomeTemplate exact path="/khuyenmai" Component={KhuyenMaiAdmin} isAuthenticated={isAuthenticated} />
+                <HomeTemplate exact path="/nguoidung" Component={NguoiDungAdmin} isAuthenticated={isAuthenticated} />
+                <HomeTemplate exact path="/taikhoan" Component={TaiKhoanAdmin} isAuthenticated={isAuthenticated} />
+                <HomeTemplate exact path="/nongdan" Component={NongDanAdmin} isAuthenticated={isAuthenticated} />
 
                 {/* Nong Dan */}
                 <HomeTemplate exact path="/shopnn" Component={ShopNN} isAuthenticated={isAuthenticated} />
                 <HomeTemplate exact path="/donhangnn" Component={DonhangNN} isAuthenticated={isAuthenticated} />
+                <HomeTemplate exact path="/thongkenn" Component={Thongkenn} isAuthenticated={isAuthenticated} />
 
 
             </Switch>

@@ -10,8 +10,8 @@ const stateDefault = {
 export const ModalReducer = (state = stateDefault, action) => {
     switch (action.type) {
         case "MODAL_FORM": {
-            // console.log(action.Func);
-            // console.log(action.ItemArr);
+            console.log(action.Func);
+            console.log(action.itemObj);
             state.Component = action.Component;
             state.Func = action.Func;
             state.itemArr = [...action.ItemArr];
