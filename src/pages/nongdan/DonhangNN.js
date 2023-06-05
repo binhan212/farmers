@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { PHOTO_API } from "../../until/Constants/SettingSystem";
 import FormDHCTNN from "../../components/FormNN/FormCTDHNN";
+import {adminService} from "../../Services/AdminService";
 export default function DonhangNN() {
 
     const dispatch = useDispatch();
@@ -93,6 +94,28 @@ export default function DonhangNN() {
 
 
     console.log(sanphams);
+
+    let [arr,setArr]=useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const updatedArr = [];
+          for (const c of sanphams) {
+            try {
+              const response = await adminService.layttdh(c.maTT);
+              const tenTT = response.data.sanPham[0].tenTT;
+              updatedArr.push(tenTT);
+            } catch (error) {
+              // Xử lý lỗi nếu cần thiết
+            }
+          }
+          setArr(updatedArr);
+        };
+      
+        fetchData();
+      }, []);
+
+
   return (
     <>
             <h1 className="h3 mb-3">
@@ -124,6 +147,9 @@ export default function DonhangNN() {
                                         <th className="d-none d-xl-table-cell">
                                             Số Lượng Đặt Mua
                                         </th>
+                                        <th className="d-none d-xl-table-cell">
+                                            Trạng Thái 
+                                        </th>
                                         <th>
                                            Chi Tiết
                                         </th>
@@ -150,6 +176,9 @@ export default function DonhangNN() {
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
                                                     {item.soLuong}
+                                                </td>
+                                                <td className="d-none d-xl-table-cell">
+                                                    {arr[index]}
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
                                                     <button className="btn btn-primary"

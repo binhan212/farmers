@@ -77,7 +77,9 @@ export function* themsuashopnnSaga() {
 function* xoashop(action) {
     try {
         var masp=action.ma;
-        // console.log(masp);
+
+        var data1 = yield call(()=>adminService.xoanhieusanpham(masp));
+        console.log(data1.data);
         var data = yield call(()=>adminService.xoashop(masp));
         console.log(data.data);  
         alert("xóa thành công!")

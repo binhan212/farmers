@@ -13,7 +13,7 @@ function FormShopNN(props) {
 
   const Func = useSelector((state) => state.ModalReducer.Func);
   const itemObj = useSelector((state) => state.ModalReducer.itemObj);
-  console.log(itemObj);
+  // console.log(itemObj);
   const dispatch = useDispatch();
   var nongdan=JSON.parse(localStorage.getItem('nongdan'));
   const {
@@ -21,7 +21,8 @@ function FormShopNN(props) {
     errors,
     handleChange,
     handleSubmit,
-    setValues
+    setValues,
+    touched
   } = props;
 
   const [anh,setAnh]=useState('')
@@ -85,6 +86,9 @@ function FormShopNN(props) {
                   onChange={handleChange}
                   value={values.tenShop}
                 />
+                {errors.tenShop && touched.tenShop ? (
+                  <p>{errors.tenShop}</p>
+                ):null}
               </div>
             </div>
 
@@ -99,6 +103,9 @@ function FormShopNN(props) {
                   onChange={handleChange}
                   value={values.moTa}
                 />
+                {errors.moTa && touched.moTa ? (
+                  <p>{errors.moTa}</p>
+                ):null}
               </div>
             </div>
 
@@ -164,13 +171,18 @@ const mapFormikToProps=withFormik({
       }),
   
         validationSchema: Yup.object().shape({
-        tenShop:Yup.string().required('tenShop không được trống!')
+        tenShop:Yup.string().min(2, "Tối thiểu 2 ký tự")
+        .max(50, "Nhiều nhất 50 ký tự")
+        .required("Không được để trống!"),
+        moTa:Yup.string().min(2, "Tối thiểu 2 ký tự")
+        .max(50, "Nhiều nhất 50 ký tự")
+        .required("Không được để trống!"),
       }),
   
       handleSubmit: (values, { props, setSubmitting }) => {
         console.log(12346554634);
         props.dispatch({ type: 'SAVE_SHOPNN', values: values });
-        props.dispatch({type:"CLOSE_MODAL"});
+       props.dispatch({type:"CLOSE_MODAL"});
       },
     displayName: 'ADMIN',
   })(FormShopNN);

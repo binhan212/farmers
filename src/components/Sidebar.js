@@ -6,10 +6,14 @@ export default function Sidebar() {
     var user= useSelector((state)=>state.UserLoginAdminReducer.userLogin);
     console.log(user.role);
     var [roleUr,stateRole]=useState(true);
+    let history = useSelector((state) => state.HistoryReducer.history);
     
     useEffect(()=>{
         if(user.role==='admin'){
             stateRole(true);
+        }
+        else if(user.role==='khách hàng'){
+            history.replace("/login");
         }
         else{
             stateRole(false);
@@ -41,12 +45,12 @@ export default function Sidebar() {
                     <ul className="sidebar-nav">
                         <li className="sidebar-header">Quản trị</li>
                         <li className="sidebar-item" onClick={handleClick}>
-                            <NavLink className="sidebar-link" to="/">
+                            <NavLink className="sidebar-link" to="/sanpham">
                                 <i
                                     className="align-middle"
                                     data-feather="sliders"
                                 />{" "}
-                                <span className="align-middle">Thống Kê</span>
+                                <span className="align-middle">Sản Phẩm</span>
                             </NavLink>
                         </li>
                         {/* <li className="sidebar-item" onClick={handleClick}>

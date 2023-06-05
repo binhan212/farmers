@@ -113,7 +113,7 @@ export default function SanPhamAdmin(props) {
                                 <h5 className="card-title mb-0">
                                     Danh sách sản Phẩm
                                 </h5>
-                                <button
+                                {/* <button
                                     className="btn btn-primary"
                                     data-toggle="modal"
                                     data-target="#modelId"
@@ -128,7 +128,7 @@ export default function SanPhamAdmin(props) {
                                     }}
                                 >
                                     Thêm
-                                </button>
+                                </button> */}
                             </div>
                             <table className="table table-hover my-0">
                                 <thead>
@@ -183,12 +183,12 @@ export default function SanPhamAdmin(props) {
                                         <th className="d-none d-md-table-cell">
                                             Số lượng
                                         </th>
-                                        <th className="d-none d-md-table-cell">
+                                        {/* <th className="d-none d-md-table-cell">
                                             Sửa
                                         </th>
                                         <th className="d-none d-md-table-cell">
                                             Xóa
-                                        </th>
+                                        </th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -219,7 +219,7 @@ export default function SanPhamAdmin(props) {
                                                 <td className="d-none d-md-table-cell">
                                                     {item.soLuong.toLocaleString()}
                                                 </td>
-                                                <td className="d-none d-md-table-cell">
+                                                {/* <td className="d-none d-md-table-cell">
                                                     <button
                                                         className="btn btn-info"
                                                         data-toggle="modal"
@@ -236,8 +236,8 @@ export default function SanPhamAdmin(props) {
                                                     >
                                                         Sửa
                                                     </button>
-                                                </td>
-                                                <td className="d-none d-md-table-cell">
+                                                </td> */}
+                                                {/* <td className="d-none d-md-table-cell">
                                                     <button className="btn btn-danger"
                                                     onClick={()=>{
                                                         dispatch({type:"XOA_SANPHAM",masp:item.maSP})
@@ -245,7 +245,7 @@ export default function SanPhamAdmin(props) {
                                                     >
                                                         Xóa
                                                     </button>
-                                                </td>
+                                                </td> */}
                                             </tr>
                                         );
                                     })}

@@ -40,6 +40,16 @@ export const adminService={
             }
         })
     },
+    xoanhieusanpham:(res)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/Sanpham/XoaMutiple?ma=${res}`,
+            method:'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
     
     laysanphamshop:(ma)=>{
         const token = localStorage.getItem('access_token');
@@ -245,6 +255,17 @@ export const adminService={
             url:`${DOMAIN_ADMIN}/Nongdan/TimKiem?offset=0&limit=-1`,
             method:'POST',
             data:{},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
+    layttdh:(ma)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/TTDH/TimKiem?offset=0&limit=-1`,
+            method:'POST',
+            data:{maTT:ma},
             headers: {
                 Authorization: `Bearer ${token}`
             }
