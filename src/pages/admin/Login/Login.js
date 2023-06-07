@@ -38,7 +38,6 @@ function Login(props) {
                             placeholder="Tài Khoản"
                             onChange={handleChange}
                         />
-
                         <div className="text-danger">{errors.taikhoan}</div>
 
                         <input
@@ -48,7 +47,6 @@ function Login(props) {
                             placeholder="Mật Khẩu"
                             onChange={handleChange}
                         />
-
                         <div className="text-danger">{errors.matkhau}</div>
 
                         <input

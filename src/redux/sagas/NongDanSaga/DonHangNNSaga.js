@@ -39,3 +39,30 @@ export function* donhangnnSaga() {
     yield takeLatest("GET_DONHANGNN", donhangnn);
 }
 //--------------------------------------------------------------
+
+
+function* suadonhangnn(action) {
+    try {
+        
+        var data = yield call(()=>
+            adminService.suadonhangnn({...action.values})
+        );
+        console.log(data.data);
+        //đưa data lên reducer 
+        yield put({
+            type:"GET_DONHANGNN"
+        })
+
+
+
+
+    } catch (err) {
+        console.log("loi");
+    }
+}
+
+
+
+export function* suadonhangnnSaga() {
+    yield takeLatest("SUA_TTCTDH", suadonhangnn);
+}

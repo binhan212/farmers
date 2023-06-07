@@ -54,7 +54,9 @@ export function* rootSaga() {
 
         ShopNNSaga.xoashopSaga(),
 
-        DonHangNNSaga.donhangnnSaga()
+        DonHangNNSaga.donhangnnSaga(),
+
+        DonHangNNSaga.suadonhangnnSaga()
 
     ])
 

@@ -6,6 +6,7 @@ import {
 
 import { adminService } from "../../../Services/AdminService";
 
+import {toast } from 'react-toastify';
 function* ShopNNSaga(action) {
     try {
         var user=JSON.parse(localStorage.getItem('userLogin'));
@@ -52,6 +53,7 @@ function* themsuashopnn(action) {
             var data = yield call(()=>
             adminService.themshopnn(res1));
             console.log(data);
+
         }else{
             var data1 = yield call(()=>
             adminService.suashopnn(res));
@@ -61,9 +63,10 @@ function* themsuashopnn(action) {
         //Gửi action để gọi lại dữ liệu
         yield put({ type: 'GET_SHOPNN' });
 
-
+        toast.success(`${func} thành công!`)
 
     } catch (err) {
+        toast.error(`${func} thất bại!`)
         console.log("loi");
     }
 }
@@ -82,9 +85,9 @@ function* xoashop(action) {
         console.log(data1.data);
         var data = yield call(()=>adminService.xoashop(masp));
         console.log(data.data);  
-        alert("xóa thành công!")
         // Gửi action để gọi lại dữ liệu
         yield put({ type: 'GET_SHOPNN' });
+        toast.success('Xóa thành công!')
     } catch (err) {
         console.log("loi xoa");
     }

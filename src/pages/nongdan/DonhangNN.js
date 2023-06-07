@@ -98,22 +98,24 @@ export default function DonhangNN() {
     let [arr,setArr]=useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-          const updatedArr = [];
-          for (const c of sanphams) {
-            try {
-              const response = await adminService.layttdh(c.maTT);
-              const tenTT = response.data.sanPham[0].tenTT;
-              updatedArr.push(tenTT);
-            } catch (error) {
-              // Xử lý lỗi nếu cần thiết
-            }
-          }
-          setArr(updatedArr);
+
+        if (sanphams.length > 0) {
+            const fetchData = async () => {
+                const updatedArr = [];
+                for (const c of sanphams) {
+                  try {
+                    const response = await adminService.layttdh(c.maTT);
+                    const tenTT = response.data.sanPham[0].tenTT;
+                    updatedArr.push(tenTT);
+                  } catch (error) {
+                    // Xử lý lỗi nếu cần thiết
+                  }
+                }
+                setArr(updatedArr);
+              };
+              fetchData();
         };
-      
-        fetchData();
-      }, []);
+      }, [sanphams]);
 
 
   return (
@@ -178,7 +180,20 @@ export default function DonhangNN() {
                                                     {item.soLuong}
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
-                                                    {arr[index]}
+                                                <select class="form-select mb-3" onChange={(e)=>{dispatch({type:"SUA_TTCTDH",values:{maCTDH:item.maCTDH,maTT:e.target.value}})}}>
+                                                    {arr.length > 0 ? (
+                                                        <>
+                                                        <option selected>--{arr[index]}--</option>
+                                                        <option value="12802062-3e78-4b1e-d1ee-7e82b2dc2e44">Đã Giao</option>
+                                                        <option value="2dbbb2f6-6169-6028-e939-fd339774c85d">Đang Giao</option>
+                                                        <option value="61e9b8d0-4275-4eef-f2f7-7841d6caa989">Trả Hàng</option>
+                                                        <option value="7fa2d825-661c-1243-ea39-fd339774c85d">Trong Kho</option>
+                                                        </>
+                                                    ) : (
+                                                        <option>Loading...</option>
+                                                    )}
+                                                </select>
+                                                    
                                                 </td>
                                                 <td className="d-none d-xl-table-cell">
                                                     <button className="btn btn-primary"

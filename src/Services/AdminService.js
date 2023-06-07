@@ -182,6 +182,17 @@ export const adminService={
             }
         })
     },
+    suadonhangnn:(res)=>{
+        const token = localStorage.getItem('access_token');
+        return Axios({
+            url:`${DOMAIN_ADMIN}/CTDH`,
+            method:'PUT',
+            data:res,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    },
 
     laynguoidung:()=>{
         const token = localStorage.getItem('access_token');

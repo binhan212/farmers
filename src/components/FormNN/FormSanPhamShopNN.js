@@ -105,6 +105,7 @@ function FormSanPhamShopNN(props) {
                   onChange={handleChange}
                   value={values.tenSP}
                 />
+                 <div className="text-danger">{errors.tenSP}</div>
               </div>
             </div>
 
@@ -119,6 +120,7 @@ function FormSanPhamShopNN(props) {
                   onChange={handleChange}
                   value={values.gia.toLocaleString()}
                 />
+                <div className="text-danger">{errors.gia}</div>
               </div>
             </div>
 
@@ -152,6 +154,7 @@ function FormSanPhamShopNN(props) {
                   onChange={handleChange}
                   value={values.moTa}
                 />
+                 <div className="text-danger">{errors.moTa}</div>
               </div>
             </div>
 
@@ -170,6 +173,7 @@ function FormSanPhamShopNN(props) {
                   onChange={handleChange}
                   value={values.soLuong}
                 />
+                <div className="text-danger">{errors.soLuong}</div>
               </div>
             </div>
             
@@ -267,7 +271,18 @@ const mapFormikToProps=withFormik({
       }),
   
         validationSchema: Yup.object().shape({
-        tenSP:Yup.string().required('tenSP không được trống!')
+        tenSP:Yup.string().min(2, "Tối thiểu 2 ký tự")
+        .max(50, "Nhiều nhất 50 ký tự"),
+        moTa:Yup.string().min(2, "Tối thiểu 2 ký tự")
+        .max(50, "Nhiều nhất 50 ký tự"),
+        gia:Yup.number()
+        .positive("Gía trị phải lớn hơn 0")
+        .integer("Gía trị phải lớn hơn 0")
+        .required("Không dc để trống!"),
+        soLuong:Yup.number()
+        .positive("Gía trị phải lớn hơn 0")
+        .integer("Gía trị phải lớn hơn 0")
+        .required("Không dc để trống!"),
       }),
   
       handleSubmit: (values, { props, setSubmitting }) => {

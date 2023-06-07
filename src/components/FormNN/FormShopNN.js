@@ -86,9 +86,7 @@ function FormShopNN(props) {
                   onChange={handleChange}
                   value={values.tenShop}
                 />
-                {errors.tenShop && touched.tenShop ? (
-                  <p>{errors.tenShop}</p>
-                ):null}
+                <div className="text-danger">{errors.tenShop}</div>
               </div>
             </div>
 
@@ -103,9 +101,7 @@ function FormShopNN(props) {
                   onChange={handleChange}
                   value={values.moTa}
                 />
-                {errors.moTa && touched.moTa ? (
-                  <p>{errors.moTa}</p>
-                ):null}
+                <div className="text-danger">{errors.moTa}</div>
               </div>
             </div>
 
@@ -172,11 +168,9 @@ const mapFormikToProps=withFormik({
   
         validationSchema: Yup.object().shape({
         tenShop:Yup.string().min(2, "Tối thiểu 2 ký tự")
-        .max(50, "Nhiều nhất 50 ký tự")
-        .required("Không được để trống!"),
+        .max(50, "Nhiều nhất 50 ký tự"),
         moTa:Yup.string().min(2, "Tối thiểu 2 ký tự")
-        .max(50, "Nhiều nhất 50 ký tự")
-        .required("Không được để trống!"),
+        .max(50, "Nhiều nhất 50 ký tự"),
       }),
   
       handleSubmit: (values, { props, setSubmitting }) => {

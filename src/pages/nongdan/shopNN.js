@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { PHOTO_API } from "../../until/Constants/SettingSystem";
 import FormShopNN from "../../components/FormNN/FormShopNN";
 import SanPhamshop from "../../components/SanPhamshop";
+import Formshopxoa from "../../components/FormNN/Formshopxoa";
 
 export default function ShopNN() {
     const dispatch = useDispatch();
@@ -221,11 +222,19 @@ export default function ShopNN() {
                                                 <td className="d-none d-md-table-cell">
                                                     <button
                                                         className="btn btn-danger"
+                                                        data-toggle="modal"
+                                                        data-target="#modelId"
                                                         onClick={() => {
                                                             dispatch({
-                                                                type: "XOA_SHOPNN",
-                                                                ma: item.maShop,
+                                                                type: "MODAL_FORM",
+                                                                Component: (
+                                                                    <Formshopxoa />
+                                                                ),
+                                                                Func: "Xóa",
+                                                                ItemArr: [],
+                                                                itemObj: {ma:item.maShop},
                                                             });
+                                                            
                                                         }}
                                                     >
                                                         Xóa
